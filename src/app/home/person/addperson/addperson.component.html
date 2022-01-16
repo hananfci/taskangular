@@ -1,0 +1,81 @@
+<div class="row">
+    <div class="col-md-12">
+         <div class="modal-header">
+            <h5 class="modal-title" id="confirmDeleteModalLabel">Add Person</h5>
+           
+            <button type="button" class="close" aria-label="Cerrar" (click)="bsModalRef.hide();">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <form [formGroup]="personform" (ngSubmit)="onPost()">
+            <div class="modal-body">
+                
+                  <div class="col-md-12 form-content">
+                
+                        <div class="col-sm-12 col-12" >
+                          <div class="form-group">
+                            <label for="name" class="label">Person Name</label>
+                            <input type="text" 
+                              id="name" 
+                              name="name" 
+                              placeholder="Name" 
+                              formControlName="personName"
+                              class="form-control">
+                            <span *ngIf="personform.controls['personName'].errors?.required && personform.controls['personName'].touched" style="color:red"> required!</span>
+                          
+                          </div>
+                        </div>
+    
+                          <div class="col-sm-12 col-12" >
+                              <div class="form-group">
+                                <label for="email" class="label">personloyee Email</label>
+                                <input type="text" 
+                                  id="email" 
+                                  name="email" 
+                                  placeholder="Email" 
+                                  formControlName="personEmail"
+                                  class="form-control">
+                                
+                                    <span *ngIf="personform.controls['personEmail'].errors?.required && personform.controls['personEmail'].touched" style="color:red"> required!</span>
+                                    <span *ngIf="personform.controls['personEmail'].errors?.email && personform.controls['personEmail'].touched" style="color:red"> Email must be in format example@test.com!</span>
+                                
+                              </div>
+                    
+                          </div>
+                            <div class="col-sm-12 col-12">
+                              <div class="form-group">
+                                <label for="phone" class="label">personloyee Phone</label>
+                                <input type="number" 
+                                  id="phone" 
+                                  name="phone" 
+                                  placeholder="Phone" 
+                                  formControlName="personPhone"
+                                  class="form-control">
+                                
+                              <span *ngIf="personform.controls['personPhone'].errors?.required && personform.controls['personPhone'].touched" style="color:red"> required!</span> 
+                            
+                            
+                              </div>
+                    
+                  </div>
+                      
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" (click)="bsModalRef.hide();">Cancel</button>
+            
+              <button type="submit" class="btn btn-success btn-save" style="position: relative;"  [disabled]= "!personform.valid || postdata">
+                  save
+                  <div class="loadingio-spinner-spin-tg278z7z83" [ngClass]="postdata? 'block' : 'none'" >
+                    <div class="ldio-tw3lft2h3a">
+                    <div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div>
+                    </div>
+                  </div>
+              </button>
+            </div>
+       </form>
+    </div>
+    
+    
+    
+     

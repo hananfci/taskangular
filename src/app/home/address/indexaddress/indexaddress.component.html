@@ -1,0 +1,79 @@
+<div class="container">
+    <div class="row">
+       <div class="col-sm-7  offset-sm-5">
+        <div *ngIf="!loadingdata">
+          <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+        </div>
+       </div> 
+       <div *ngIf="loadingdata">
+       <div class="col-xs-12 col-sm-12" >
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3>Manage Addresses</h3>
+            <div class="btn-Action">
+
+              <button  class="btn btn-success btn-add" (click)="openModalWithComponent()"> <i class="fa fa-plus"></i> Add New address</button>
+            </div>
+          </div>
+          <div class="panel-body">
+              <div *ngIf="Addresses?.length > 0" class="div-table-container">
+                <table class="table responsetable table-striped">
+                  <thead>
+                    <tr>
+                      <th>Address</th>
+                      <th>Actions </th>
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                  <!--   <tr class="displaynone">
+                    <td colspan="5">{{employees.length}}</td>
+                  </tr>  --> 
+       
+                    <tr *ngFor="let address of Addresses | paginate: {itemsPerPage: pageSize, currentPage: page, totalItems: count }">
+
+                      <td>{{address.streetName}}</td>
+                      <td>
+                        <button  class="btn-delete btn btn-danger" (click)="openDelete(content,address.id,address.streetName)" href="javascript:void(0);" ><i class="fa fa-trash"></i></button>
+                          <button  class="btn-edit btn btn-success" (click)="openEditModalWithComponent(address.id)" style="margin-left: 10px"><i class="fa fa-edit"></i></button>
+                      </td>
+                    </tr> 
+                  
+                  </tbody>
+                </table>
+               
+                <pagination-controls  (pageChange)="handlePageChange($event)" responsive="true"></pagination-controls>
+            </div>
+            <div *ngIf="Addresses?.length == 0">
+              <div class="bs-callout bs-callout-red col-xs-12 col-sm-12" id="callout-badges-ie8-empty">
+                <h4> Empty List</h4>
+                <p> 
+                  There isn't data, please add somedata ......
+                    
+                </p>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    
+  
+    <ng-template #content let-c="close" let-d="dismiss">    
+      <div class="modal-header">    
+          <h4 class="modal-title" id="modal-basic-title">Delete Employee</h4>    
+          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">    
+              <span aria-hidden="true">×</span>    
+          </button>    
+      </div>    
+      <div class="modal-body">    
+          <p>Are you sure to delete this Record {{DeletedName}}?</p>    
+      </div>    
+      <div class="modal-footer">    
+          <button type="button" class="btn btn-outline-dark" (click)="d('Cross click')">Cancel</button>    
+          <button type="button" class="btn btn-outline-dark btn-danger " (click)="c('yes')">Yes</button>    
+      </div>    
+  </ng-template> 
+  </div>
+  </div>
